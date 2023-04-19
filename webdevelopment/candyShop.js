@@ -51,6 +51,7 @@ function onScreenFunction(myObj) {
     const buyOneBtn = document.createElement('input');
     buyOneBtn.value = 'BuyOne';
     buyOneBtn.type = 'button';
+    
     buyOneBtn.onclick = () => {
         const url = `https://crudcrud.com/api/481bee8a533e41f39a7169e3d55dc20f/ExpenseTrackerNew/${myObj._id}`;
         axios.put(url, {
