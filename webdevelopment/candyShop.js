@@ -15,7 +15,7 @@ function onsignup(event) {
     }
 
     if (candyName && description && price && quantity) {
-        axios.post('https://crudcrud.com/api/c02e0ecd45894c749587473db364c24d/order', myObj)
+        axios.post('https://crudcrud.com/api/bc710600b38d40b4be093ea4f4e60e5a/order', myObj)
             .then((resolve) => {
                 onScreenFunction(myObj);
                 console.log(resolve);
@@ -30,7 +30,7 @@ function onsignup(event) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    axios.get('https://crudcrud.com/api/c02e0ecd45894c749587473db364c24d/order')
+    axios.get('https://crudcrud.com/api/bc710600b38d40b4be093ea4f4e60e5a/order')
         .then((response) => {
             console.log(response);
             response.data.forEach((element) => {
@@ -53,8 +53,8 @@ function onScreenFunction(myObj) {
     buyOneBtn.type = 'button';
 
     buyOneBtn.onclick = () => {
-        const url = `https://crudcrud.com/api/c02e0ecd45894c749587473db364c24d/order/${myObj._id}`;
-        if (myObj.quantity > 0) {
+        const url = `https://crudcrud.com/api/bc710600b38d40b4be093ea4f4e60e5a/order/${myObj._id}`;
+        if (myObj.quantity >1) {
             axios.put(url, {
                 candyName: myObj.candyName,
                 description: myObj.description,
@@ -67,7 +67,21 @@ function onScreenFunction(myObj) {
             .catch((err) => {
                 console.error(err);
             });
-        } else {
+        }else if(myObj.quantity == 1){
+            axios.put(url, {
+                candyName: myObj.candyName,
+                description: myObj.description,
+                price: myObj.price,
+                quantity: "OutOfStock"
+            })
+            .then(() =>{
+                li.innerHTML = `${myObj.candyName} - ${myObj.description} - ${myObj.price} - ${"OutOfStock"} `;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+        }
+         else{
             axios.put(url, {
                 candyName: myObj.candyName,
                 description: myObj.description,
@@ -82,27 +96,15 @@ function onScreenFunction(myObj) {
             });
         }
         
-        
-        //     .then(() => {
-
-        //     if (myObj.quantity > 0) {
-        //         li.innerHTML = `${myObj.candyName} - ${myObj.description} - ${myObj.price} - ${myObj.quantity - 1} `;
-        //     } else {
-        //         li.innerHTML = `${myObj.candyName} - ${myObj.description} - ${myObj.price} - ${"OutOfStock"} `;
-        //     }
-        // })
-            // .catch((err) => {
-            //     console.error(err);
-            // });
     }
 
     const buyTwoBtn = document.createElement('input');
-    buyTwoBtn.value = 'BuyOne';
+    buyTwoBtn.value = 'BuyTwo';
     buyTwoBtn.type = 'button';
 
     buyTwoBtn.onclick = () => {
-        const url = `https://crudcrud.com/api/c02e0ecd45894c749587473db364c24d/order/${myObj._id}`;
-        if (myObj.quantity >= 2) {
+        const url = `https://crudcrud.com/api/bc710600b38d40b4be093ea4f4e60e5a/order/${myObj._id}`;
+        if (myObj.quantity >2) {
             axios.put(url, {
                 candyName: myObj.candyName,
                 description: myObj.description,
@@ -115,7 +117,21 @@ function onScreenFunction(myObj) {
             .catch((err) => {
                 console.error(err);
             });
-        } else {
+        }else if(myObj.quantity == 2){
+            axios.put(url, {
+                candyName: myObj.candyName,
+                description: myObj.description,
+                price: myObj.price,
+                quantity: "OutOfStock"
+            })
+            .then(() =>{
+                li.innerHTML = `${myObj.candyName} - ${myObj.description} - ${myObj.price} - ${"OutOfStock"} `;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+        }
+         else {
             axios.put(url, {
                 candyName: myObj.candyName,
                 description: myObj.description,
@@ -137,8 +153,8 @@ function onScreenFunction(myObj) {
     buyThreeBtn.value = 'BuyThree';
     buyThreeBtn.type = 'button';
     buyThreeBtn.onclick = () => {
-        const url = `https://crudcrud.com/api/c02e0ecd45894c749587473db364c24d/order/${myObj._id}`;
-        if (myObj.quantity >= 3) {
+        const url = `https://crudcrud.com/api/bc710600b38d40b4be093ea4f4e60e5a/order/${myObj._id}`;
+        if (myObj.quantity >3) {
             axios.put(url, {
                 candyName: myObj.candyName,
                 description: myObj.description,
@@ -151,7 +167,21 @@ function onScreenFunction(myObj) {
             .catch((err) => {
                 console.error(err);
             });
-        } else {
+        }else if(myObj.quantity == 3){
+            axios.put(url, {
+                candyName: myObj.candyName,
+                description: myObj.description,
+                price: myObj.price,
+                quantity: "OutOfStock"
+            })
+            .then(() =>{
+                li.innerHTML = `${myObj.candyName} - ${myObj.description} - ${myObj.price} - ${"OutOfStock"} `;
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+        }
+         else {
             axios.put(url, {
                 candyName: myObj.candyName,
                 description: myObj.description,
@@ -172,7 +202,7 @@ function onScreenFunction(myObj) {
     cancelBtn.value = 'Cancel-Order';
     cancelBtn.type = 'button';
     cancelBtn.onclick = () => {
-        axios.delete(`https://crudcrud.com/api/c02e0ecd45894c749587473db364c24d/order/${myObj._id}`)
+        axios.delete(`https://crudcrud.com/api/bc710600b38d40b4be093ea4f4e60e5a/order/${myObj._id}`)
             .then(() => {
                 ul.removeChild(li);
             })
