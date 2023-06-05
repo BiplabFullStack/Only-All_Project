@@ -3,7 +3,7 @@ const rootDir = path.dirname(require.main.filename);
 const User = require('../models/users')
 
 
-exports.getAppointments = (req, res, next) => {
+const getAppointments = (req, res, next) => {
     User.findAll()
     .then(users => {
         res.json(users);
@@ -13,11 +13,11 @@ exports.getAppointments = (req, res, next) => {
     })
 }
 
-exports.getAppointmentPage = (req, res, next) => {
+const getAppointmentPage = (req, res, next) => {
     res.sendFile(path.join(rootDir, "views", "index.html"));
 }
 
-exports.postNewUser = (req, res, next) => {
+const postNewUser = (req, res, next) => {
     console.log("reached controller",req.body);
     const name = req.body.name;
     const phone = req.body.phone;
@@ -36,7 +36,8 @@ exports.postNewUser = (req, res, next) => {
     })
 };
 
-exports.deleteUser = (req, res, next) => {
+const deleteUser = (req, res, next) => {
+    
     const id = req.query.id;
     User.findByPk(id)
     .then(user => {
@@ -50,3 +51,5 @@ exports.deleteUser = (req, res, next) => {
         console.log(err);
     })
 }
+
+module.exports ={getAppointments, getAppointmentPage, postNewUser ,deleteUser}
